@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "bilibili-danmaku",
+  "name": "Bilibili Danmaku",
+  "version": "${mod_version}",
+  "description": "A Fabric mod that implements the Bilibili Danmaku for Minecraft.",
+  "authors": [
+    {
+      "name": "Hendrix_Shen",
+      "contact": {
+        "homepage": "https://github.com/Hendrix-Shen"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://github.com/Hendrix-Shen/Bilibili-Danmaku",
+    "issues": "https://github.com/Hendrix-Shen/Bilibili-Danmaku/issues",
+    "sources": "https://github.com/Hendrix-Shen/Bilibili-Danmaku"
+  },
+  "license": "GPLv3",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "top.hendrixshen.bilibilidanmaku.BilibiliDanmaku"
+    ],
+    "modmenu": [
+      "top.hendrixshen.bilibilidanmaku.compat.modmenu.ModMenuApiImpl"
+    ]
+  },
+  "mixins": [
+    "bilibili-danmaku.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.9.0",
+    "magiclib": ">=0.2.4 <0.3",
+    "malilib": ">=0.10.0-dev.21"
+  }
+}
