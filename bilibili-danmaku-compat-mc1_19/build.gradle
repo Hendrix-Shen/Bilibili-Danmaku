@@ -1,0 +1,8 @@
+dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+
+    modImplementation("curse.maven:malilib-303119:${project.library_malilib_version}")
+    modCompileOnly("curse.maven:modmenu-308702:${project.library_modmenu_version}")
+
+    modRuntimeOnly("curse.maven:in-game-account-switcher-232676:${project.library_inGameAccountSwitcher_version}")
+}

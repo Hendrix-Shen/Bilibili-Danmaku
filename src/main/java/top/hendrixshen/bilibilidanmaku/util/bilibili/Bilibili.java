@@ -13,6 +13,7 @@ import top.hendrixshen.bilibilidanmaku.config.Configs;
 import top.hendrixshen.bilibilidanmaku.util.InfoUtil;
 import top.hendrixshen.bilibilidanmaku.util.Zlib;
 import top.hendrixshen.bilibilidanmaku.util.websocket.WebSocketClient;
+import top.hendrixshen.bilibilidanmaku.util.websocket.WebSocketManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,11 +54,11 @@ public class Bilibili {
     }
 
     public String getUri() {
-        return Configs.websocketUri.getStringValue();
+        return Configs.websocketUri;
     }
 
     public String getInitApiUrl() {
-        return Configs.initApiUrl.getStringValue();
+        return Configs.initApiUrl;
     }
 
     public int getRealRoomId(int id) {
@@ -74,7 +75,7 @@ public class Bilibili {
     }
 
     public void initMessage(WebSocketClient client) {
-        int id = this.getRealRoomId(Configs.roomId.getIntegerValue());
+        int id = this.getRealRoomId(Configs.roomId);
         if (id > -1) {
             InfoUtil.sendClientMessage(InfoUtil.getMessage("getRealRoomID.successful", id));
             byte[] message = String.format("{\"roomid\": %d}", id).getBytes(StandardCharsets.UTF_8);
@@ -88,6 +89,7 @@ public class Bilibili {
             client.sendMessage(buf);
         } else {
             InfoUtil.sendClientMessage(InfoUtil.getMessage("getRealRoomID.failed"));
+            WebSocketManager.close();
         }
     }
 

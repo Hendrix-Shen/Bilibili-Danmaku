@@ -1,6 +1,6 @@
 package top.hendrixshen.bilibilidanmaku;
 
-import top.hendrixshen.magiclib.api.dependencyValidator.mixin.MagicMixinPlugin;
+import top.hendrixshen.magiclib.dependency.mixin.MagicMixinPlugin;
 
 public class BilibiliDanmakuMixinPlugin extends MagicMixinPlugin {
 }

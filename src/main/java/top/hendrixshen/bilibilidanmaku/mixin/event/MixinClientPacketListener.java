@@ -18,7 +18,7 @@ public class MixinClientPacketListener {
             )
     )
     private void afterLogin(ClientboundLoginPacket clientboundLoginPacket, CallbackInfo ci) {
-        if (Configs.enable.getBooleanValue()) {
+        if (Configs.enable) {
             WebSocketManager.open();
         }
     }

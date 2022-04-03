@@ -1,22 +1,18 @@
 package top.hendrixshen.bilibilidanmaku;
 
-import fi.dy.masa.malilib.event.InitializationHandler;
-import fi.dy.masa.malilib.event.InputEventHandler;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.hendrixshen.bilibilidanmaku.config.ConfigStorage;
 import top.hendrixshen.bilibilidanmaku.config.Configs;
-import top.hendrixshen.bilibilidanmaku.event.InputHandler;
-import top.hendrixshen.magiclib.untils.language.I18n;
-import top.hendrixshen.magiclib.util.malilib.ConfigManager;
+import top.hendrixshen.magiclib.config.ConfigHandler;
+import top.hendrixshen.magiclib.config.ConfigManager;
 
 public class BilibiliDanmaku implements ModInitializer {
     private static final Logger logger = LogManager.getLogger(BilibiliDanmakuReference.getModId());
     private static final Minecraft minecraftClient = Minecraft.getInstance();
 
-    public static ConfigManager cm = new ConfigManager(BilibiliDanmakuReference.getModId());
+    public static ConfigManager cm = ConfigManager.get(BilibiliDanmakuReference.getModId());
 
     public static Minecraft getMinecraftClient() {
         return minecraftClient;
@@ -28,16 +24,11 @@ public class BilibiliDanmaku implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        InitializationHandler.getInstance().registerInitializationHandler(() -> {
-            cm.parseConfigClass(Configs.class);
-            fi.dy.masa.malilib.config.ConfigManager.getInstance().registerConfigHandler(BilibiliDanmakuReference.getModId(), new ConfigStorage());
-            InputEventHandler.getKeybindManager().registerKeybindProvider(new InputHandler());
-            Configs.initCallbacks();
+        cm.parseConfigClass(Configs.class);
 
-            logger.info(String.format("[%s]: Mod initialized - Version: %s (%s)", BilibiliDanmakuReference.getModName(), BilibiliDanmakuReference.getModVersion(), BilibiliDanmakuReference.getModVersionType()));
-        });
+        ConfigHandler.register(new ConfigHandler(BilibiliDanmakuReference.getModId(), cm, BilibiliDanmakuReference.getConfigVersion(), null, null));
+        Configs.initCallbacks(cm);
 
-        I18n.getInstance().register(BilibiliDanmakuReference.getModId(), "en_us");
-        I18n.getInstance().register(BilibiliDanmakuReference.getModId(), "zh_cn");
+        logger.info(String.format("[%s]: Mod initialized - Version: %s (%s)", BilibiliDanmakuReference.getModName(), BilibiliDanmakuReference.getModVersion(), BilibiliDanmakuReference.getModVersionType()));
     }
 }

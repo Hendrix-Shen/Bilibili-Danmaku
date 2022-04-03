@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "bilibili-danmaku-compat-mc1_18",
+  "name": "Bilibili Danmaku Compat",
+  "version": "${mod_version}",
+  "description": "Bilibili Danmaku compat for Minecraft 1.18.x",
+  "authors": [
+    {
+      "name": "Hendrix_Shen",
+      "contact": {
+        "homepage": "https://github.com/Hendrix-Shen"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://github.com/Hendrix-Shen/Bilibili-Danmaku",
+    "issues": "https://github.com/Hendrix-Shen/Bilibili-Danmaku/issues",
+    "sources": "https://github.com/Hendrix-Shen/Bilibili-Danmaku"
+  },
+  "license": "GPLv3",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "top.hendrixshen.bilibilidanmaku.BilibiliDanmakuCompat"
+    ]
+  },
+  "mixins": [
+    "bilibili-danmaku-compat.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "1.18.x",
+    "bilibili-danmaku": "*"
+  },
+  "custom": {
+    "modmenu:parent": "bilibili-danmaku",
+    "modmenu:clientsideOnly": true,
+    "modmenu": {
+      "parent": "bilibili-danmaku"
+    }
+  }
+}

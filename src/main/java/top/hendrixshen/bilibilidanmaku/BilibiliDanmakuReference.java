@@ -8,6 +8,8 @@ public class BilibiliDanmakuReference {
     private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
     private static final String MOD_VERSION_TYPE = "Development";
 
+    private static final int CONFIG_VERSION = 1;
+
     public static String getModId() {
         return MOD_ID;
     }
@@ -22,5 +24,9 @@ public class BilibiliDanmakuReference {
 
     public static String getModVersionType() {
         return MOD_VERSION_TYPE;
+    }
+
+    public static int getConfigVersion() {
+        return CONFIG_VERSION;
     }
 }

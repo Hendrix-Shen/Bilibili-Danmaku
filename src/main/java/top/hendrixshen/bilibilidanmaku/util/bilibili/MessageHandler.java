@@ -17,19 +17,19 @@ public class MessageHandler {
         boolean isAdmin = user.get(2).getAsInt() == 1;
         boolean isGuard = StringUtils.isNotBlank(user.get(7).getAsString());
 
-        if (Configs.blockWords.getStrings().stream().noneMatch((danmaku::contains))) {
+        if (Configs.blockWords.stream().noneMatch((danmaku::contains))) {
             if (isAdmin) {
-                return String.format(Configs.formatChatAdmin.getStringValue()
+                return String.format(Configs.formatChatAdmin
                         .replaceAll("&([0-9a-fk-or])", "§$1")
                         .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s"))
                         .replaceAll("%\\{danmaku}", Matcher.quoteReplacement("%2$s")), userName, danmaku);
             } else if (isGuard) {
-                return String.format(Configs.formatChatDanmakuGuard.getStringValue()
+                return String.format(Configs.formatChatDanmakuGuard
                         .replaceAll("&([0-9a-fk-or])", "§$1")
                         .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s"))
                         .replaceAll("%\\{danmaku}", Matcher.quoteReplacement("%2$s")), userName, danmaku);
             } else {
-                return String.format(Configs.formatChatDanmakuNormal.getStringValue()
+                return String.format(Configs.formatChatDanmakuNormal
                         .replaceAll("&([0-9a-fk-or])", "§$1")
                         .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s"))
                         .replaceAll("%\\{danmaku}", Matcher.quoteReplacement("%2$s")), userName, danmaku);
@@ -45,8 +45,8 @@ public class MessageHandler {
         String giftName = jsonObject.get("giftName").getAsString();
         int num = jsonObject.get("num").getAsInt();
 
-        if (Configs.blockGifts.getStrings().stream().noneMatch(giftName::contains)) {
-            return String.format(Configs.formatChatGifts.getStringValue()
+        if (Configs.blockGifts.stream().noneMatch(giftName::contains)) {
+            return String.format(Configs.formatChatGifts
                     .replaceAll("&([0-9a-fk-or])", "§$1")
                     .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s"))
                     .replaceAll("%\\{action}", Matcher.quoteReplacement("%2$s"))
@@ -60,7 +60,7 @@ public class MessageHandler {
         JsonObject jsonObject = data.getAsJsonObject("data");
         String userName = jsonObject.get("uname").getAsString();
 
-        return String.format(Configs.formatChatWelcomeNormal.getStringValue()
+        return String.format(Configs.formatChatWelcomeNormal
                 .replaceAll("&([0-9a-fk-or])", "§$1")
                 .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s")), userName);
     }
@@ -71,20 +71,20 @@ public class MessageHandler {
         int level = jsonObject.get("guard_level").getAsInt();
         switch (level) {
             case 1:
-                if (Configs.chatWelcomeGuardLv1Enable.getBooleanValue()) {
-                    return String.format(Configs.formatChatWelcomeGuardLv1.getStringValue()
+                if (Configs.chatWelcomeGuardLv1Enable) {
+                    return String.format(Configs.formatChatWelcomeGuardLv1
                             .replaceAll("&([0-9a-fk-or])", "§$1")
                             .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s")), userName);
                 }
             case 2:
-                if (Configs.chatWelcomeGuardLv2Enable.getBooleanValue()) {
-                    return String.format(Configs.formatChatWelcomeGuardLv2.getStringValue()
+                if (Configs.chatWelcomeGuardLv2Enable) {
+                    return String.format(Configs.formatChatWelcomeGuardLv2
                             .replaceAll("&([0-9a-fk-or])", "§$1")
                             .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s")), userName);
                 }
             case 3:
-                if (Configs.chatWelcomeGuardLv3Enable.getBooleanValue()) {
-                    return String.format(Configs.formatChatWelcomeGuardLv3.getStringValue()
+                if (Configs.chatWelcomeGuardLv3Enable) {
+                    return String.format(Configs.formatChatWelcomeGuardLv3
                             .replaceAll("&([0-9a-fk-or])", "§$1")
                             .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s")), userName);
                 }
@@ -100,8 +100,8 @@ public class MessageHandler {
         String giftName = jsonObject.get("gift_name").getAsString();
         int num = jsonObject.get("total_num").getAsInt();
 
-        if (Configs.blockGifts.getStrings().stream().noneMatch(giftName::contains)) {
-            return String.format(Configs.formatChatGifts.getStringValue()
+        if (Configs.blockGifts.stream().noneMatch(giftName::contains)) {
+            return String.format(Configs.formatChatGifts
                     .replaceAll("&([0-9a-fk-or])", "§$1")
                     .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s"))
                     .replaceAll("%\\{action}", Matcher.quoteReplacement("%2$s"))
@@ -118,20 +118,20 @@ public class MessageHandler {
         int level = jsonObject.get("guard_level").getAsInt();
         switch (level) {
             case 1:
-                if (Configs.chatGuardBuyLevel1Enable.getBooleanValue()) {
-                    return String.format(Configs.formatChatBuyGuardLv1.getStringValue()
+                if (Configs.chatGuardBuyLevel1Enable) {
+                    return String.format(Configs.formatChatBuyGuardLv1
                             .replaceAll("&([0-9a-fk-or])", "§$1")
                             .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s")), userName);
                 }
             case 2:
-                if (Configs.chatGuardBuyLevel2Enable.getBooleanValue()) {
-                    return String.format(Configs.formatChatBuyGuardLv2.getStringValue()
+                if (Configs.chatGuardBuyLevel2Enable) {
+                    return String.format(Configs.formatChatBuyGuardLv2
                             .replaceAll("&([0-9a-fk-or])", "§$1")
                             .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s")), userName);
                 }
             case 3:
-                if (Configs.chatGuardBuyLevel3Enable.getBooleanValue()) {
-                    return String.format(Configs.formatChatBuyGuardLv3.getStringValue()
+                if (Configs.chatGuardBuyLevel3Enable) {
+                    return String.format(Configs.formatChatBuyGuardLv3
                             .replaceAll("&([0-9a-fk-or])", "§$1")
                             .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s")), userName);
                 }
@@ -147,7 +147,7 @@ public class MessageHandler {
         String message = jsonObject.get("message").getAsString();
         int price = jsonObject.get("price").getAsInt();
 
-        return String.format(Configs.formatChatSuperChat.getStringValue()
+        return String.format(Configs.formatChatSuperChat
                 .replaceAll("&([0-9a-fk-or])", "§$1")
                 .replaceAll("%\\{user}", Matcher.quoteReplacement("%1$s"))
                 .replaceAll("%\\{msg}", Matcher.quoteReplacement("%2$s"))

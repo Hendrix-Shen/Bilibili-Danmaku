@@ -1,123 +1,132 @@
 package top.hendrixshen.bilibilidanmaku.config;
 
-import com.google.common.collect.ImmutableList;
-import fi.dy.masa.malilib.config.options.*;
+import com.google.common.collect.Lists;
+import fi.dy.masa.malilib.config.options.ConfigHotkey;
+import top.hendrixshen.bilibilidanmaku.BilibiliDanmakuPredicates;
 import top.hendrixshen.bilibilidanmaku.event.CallBacks;
-import top.hendrixshen.magiclib.api.malilib.annotation.Config;
+import top.hendrixshen.magiclib.config.ConfigManager;
+import top.hendrixshen.magiclib.config.annotation.Config;
+import top.hendrixshen.magiclib.config.annotation.Hotkey;
+import top.hendrixshen.magiclib.config.annotation.Numeric;
+import top.hendrixshen.magiclib.dependency.Predicates;
 
-import static top.hendrixshen.bilibilidanmaku.BilibiliDanmaku.cm;
+import java.util.ArrayList;
 
 public class Configs {
     // Generic configs
     @Config(category = ConfigCategory.GENERIC)
-    public static final ConfigBoolean enable = cm.createBoolean("enable", false);
+    public static boolean enable = false;
 
     @Config(category = ConfigCategory.GENERIC)
-    public static final ConfigStringList blockGifts = cm.createStringList("blockGifts", ImmutableList.of("辣条"));
+    public static ArrayList<String> blockGifts = Lists.newArrayList("辣条");
 
     @Config(category = ConfigCategory.GENERIC)
-    public static final ConfigStringList blockWords = cm.createStringList("blockWords", ImmutableList.of("Fuck"));
+    public static ArrayList<String> blockWords = Lists.newArrayList("Fuck");
 
+    @Hotkey(hotkey = "B,C")
     @Config(category = ConfigCategory.GENERIC)
-    public static final ConfigHotkey openConfigGui = cm.createHotkey("openConfigGui", "B,C");
+    public static ConfigHotkey openConfigGui;
 
+    @Numeric(minValue = 0, maxValue = Integer.MAX_VALUE)
     @Config(category = ConfigCategory.GENERIC)
-    public static final ConfigInteger roomId = cm.createInteger("roomId", 0, 0, Integer.MAX_VALUE);
+    public static int roomId;
 
     // Chat toggle configs
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatDanmakuEnable = cm.createBoolean("chatDanmakuEnable", true);
+    public static boolean chatDanmakuEnable = true;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatGiftEnable = cm.createBoolean("chatGiftEnable", true);
+    public static boolean chatGiftEnable = true;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatGuardBuyEnable = cm.createBoolean("chatGuardBuyEnable", true);
+    public static boolean chatGuardBuyEnable = true;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatGuardBuyLevel1Enable = cm.createBoolean("chatGuardBuyLevel1Enable", true);
+    public static boolean chatGuardBuyLevel1Enable = true;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatGuardBuyLevel2Enable = cm.createBoolean("chatGuardBuyLevel2Enable", true);
+    public static boolean chatGuardBuyLevel2Enable = true;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatGuardBuyLevel3Enable = cm.createBoolean("chatGuardBuyLevel3Enable", true);
+    public static boolean chatGuardBuyLevel3Enable = true;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatSuperChatEnable = cm.createBoolean("chatSuperChatEnable", true);
+    public static boolean chatSuperChatEnable = true;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatWelcomeEnable = cm.createBoolean("chatWelcomeEnable", true);
+    public static boolean chatWelcomeEnable = true;
 
-    @Config(category = ConfigCategory.TOGGLE_CHAT, devOnly = true)
-    public static final ConfigBoolean chatWelcomeGuardEnable = cm.createBoolean("chatWelcomeGuardEnable", false);
+    @Config(category = ConfigCategory.TOGGLE_CHAT, predicate = Predicates.DevOptionPredicate.class)
+    public static boolean chatWelcomeGuardEnable = false;
 
-    @Config(category = ConfigCategory.TOGGLE_CHAT, devOnly = true)
-    public static final ConfigBoolean chatWelcomeGuardLv1Enable = cm.createBoolean("chatWelcomeGuardLv1Enable", false);
+    @Config(category = ConfigCategory.TOGGLE_CHAT, predicate = Predicates.DevOptionPredicate.class)
+    public static boolean chatWelcomeGuardLv1Enable = false;
 
-    @Config(category = ConfigCategory.TOGGLE_CHAT, devOnly = true)
-    public static final ConfigBoolean chatWelcomeGuardLv2Enable = cm.createBoolean("chatWelcomeGuardLv2Enable", false);
+    @Config(category = ConfigCategory.TOGGLE_CHAT, predicate = Predicates.DevOptionPredicate.class)
+    public static boolean chatWelcomeGuardLv2Enable = false;
 
-    @Config(category = ConfigCategory.TOGGLE_CHAT, devOnly = true)
-    public static final ConfigBoolean chatWelcomeGuardLv3Enable = cm.createBoolean("chatWelcomeGuardLv3Enable", false);
+    @Config(category = ConfigCategory.TOGGLE_CHAT, predicate = Predicates.DevOptionPredicate.class)
+    public static boolean chatWelcomeGuardLv3Enable = false;
 
     @Config(category = ConfigCategory.TOGGLE_CHAT)
-    public static final ConfigBoolean chatWelcomeNormalEnable = cm.createBoolean("chatWelcomeNormalEnable", true);
+    public static boolean chatWelcomeNormalEnable = true;
 
     // Chat format configs
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatAdmin = cm.createString("formatChatAdmin", "&4[房] &d<%{user}> &f%{danmaku}");
+    public static String formatChatAdmin = "&4[房] &d<%{user}> &f%{danmaku}";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatBuyGuardLv1 = cm.createString("formatChatBuyGuardLv1", "&4%{user} 开通了主播的总督");
+    public static String formatChatBuyGuardLv1 = "&4%{user} 开通了主播的总督";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatBuyGuardLv2 = cm.createString("formatChatBuyGuardLv2", "&6%{user} 开通了主播的提督");
+    public static String formatChatBuyGuardLv2 = "&6%{user} 开通了主播的提督";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatBuyGuardLv3 = cm.createString("formatChatBuyGuardLv3", "&3%{user} 开通了主播的舰长");
+    public static String formatChatBuyGuardLv3 = "&3%{user} 开通了主播的舰长";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatDanmakuGuard = cm.createString("formatChatDanmakuGuard", "&6[舰] &2<%{user}> &f%{danmaku}");
+    public static String formatChatDanmakuGuard = "&6[舰] &2<%{user}> &f%{danmaku}";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatDanmakuNormal = cm.createString("formatChatDanmakuNormal", "&7[普] &b<%{user}> &f%{danmaku}");
+    public static String formatChatDanmakuNormal = "&7[普] &b<%{user}> &f%{danmaku}";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatGifts = cm.createString("formatChatGifts", "&7%{user} %{action} [%{gift}] × %{num}");
+    public static String formatChatGifts = "&7%{user} %{action} [%{gift}] × %{num}";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatSuperChat = cm.createString("formatChatSuperChat", "&4%{user} > %{msg} [¥%{price}]");
+    public static String formatChatSuperChat = "&4%{user} > %{msg} [¥%{price}]";
 
-    @Config(category = ConfigCategory.FORMAT_CHAT, devOnly = true)
-    public static final ConfigString formatChatWelcomeGuardLv1 = cm.createString("formatChatWelcomeGuardLv1", "&4欢迎总督 %{user} 进入直播间");
+    @Config(category = ConfigCategory.FORMAT_CHAT, predicate = Predicates.DevOptionPredicate.class)
+    public static String formatChatWelcomeGuardLv1 = "&4欢迎总督 %{user} 进入直播间";
 
-    @Config(category = ConfigCategory.FORMAT_CHAT, devOnly = true)
-    public static final ConfigString formatChatWelcomeGuardLv2 = cm.createString("formatChatWelcomeGuardLv2", "&6欢迎提督 %{user} 进入直播间");
+    @Config(category = ConfigCategory.FORMAT_CHAT, predicate = Predicates.DevOptionPredicate.class)
+    public static String formatChatWelcomeGuardLv2 = "&6欢迎提督 %{user} 进入直播间";
 
-    @Config(category = ConfigCategory.FORMAT_CHAT, devOnly = true)
-    public static final ConfigString formatChatWelcomeGuardLv3 = cm.createString("formatChatWelcomeGuardLv3", "&3欢迎舰长 %{user} 进入直播间");
+    @Config(category = ConfigCategory.FORMAT_CHAT, predicate = Predicates.DevOptionPredicate.class)
+    public static String formatChatWelcomeGuardLv3 = "&3欢迎舰长 %{user} 进入直播间";
 
     @Config(category = ConfigCategory.FORMAT_CHAT)
-    public static final ConfigString formatChatWelcomeNormal = cm.createString("formatChatWelcomeNormal", "&7欢迎 %{user} 进入直播间");
+    public static String formatChatWelcomeNormal = "&7欢迎 %{user} 进入直播间";
 
     // Debug configs
     @Config(category = ConfigCategory.DEBUG)
-    public static final ConfigBoolean debugMode = cm.createBoolean("debugMode", false);
+    public static boolean debugMode = false;
 
-    @Config(category = ConfigCategory.DEBUG, debug = true)
-    public static final ConfigString initApiUrl = cm.createString("initApiUrl", "https://api.live.bilibili.com/room/v1/Room/room_init");
+    @Config(category = ConfigCategory.DEBUG, predicate = BilibiliDanmakuPredicates.DebugOptionPredicate.class)
+    public static String initApiUrl = "https://api.live.bilibili.com/room/v1/Room/room_init";
 
-    @Config(category = ConfigCategory.DEBUG, debug = true)
-    public static final ConfigString websocketUri = cm.createString("websocketUri", "wss://broadcastlv.chat.bilibili.com:443/sub");
+    @Config(category = ConfigCategory.DEBUG, predicate = BilibiliDanmakuPredicates.DebugOptionPredicate.class)
+    public static String websocketUri = "wss://broadcastlv.chat.bilibili.com:443/sub";
 
-    public static void initCallbacks() {
+    public static void initCallbacks(ConfigManager cm) {
         // Generic config callback
-        enable.setValueChangeCallback(CallBacks::enableCallback);
+        cm.setValueChangeCallback("enable", CallBacks::enableCallback);
         openConfigGui.getKeybind().setCallback(CallBacks::openConfigGuiCallback);
-        roomId.setValueChangeCallback(CallBacks::roomIdCallback);
+        cm.setValueChangeCallback("roomId", CallBacks::roomIdCallback);
 
         // Debug config callback
-        debugMode.setValueChangeCallback(CallBacks::debugModeCallBack);
+        cm.setValueChangeCallback("debugMode", CallBacks::debugModeCallBack);
+
+        CallBacks.debugModeCallBack(null);
     }
 }
