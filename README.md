@@ -10,16 +10,18 @@
 
 [中文](./README_ZH_CN.md)
 
+The default hotkey to open the in-game config GUI is **B + C**.
+
 **Warning: The project is still in the early development stage.**
 
 A Fabric mod that implements the Bilibili Danmaku for Minecraft.
 
 ## Dependencies
 
-| Dependency | Type     | Version  | Download                                                                                                                                     |
-|------------|----------|----------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Dependency | Type     | Version   | Download                                                                                                                                     |
+|------------|----------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | MagicLib   | Required | > =0.3.26 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/magiclib) &#124; [Github](https://github.com/Hendrix-Shen/MagicLib)                |
-| MaliLib    | Required | Any      | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/malilib) &#124; [Masa WebSite](https://masa.dy.fi/mcmods/client_mods/?mod=malilib) |
+| MaliLib    | Required | Any       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/malilib) &#124; [Masa WebSite](https://masa.dy.fi/mcmods/client_mods/?mod=malilib) |
 
 ## Development
 
