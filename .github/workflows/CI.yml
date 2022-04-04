@@ -141,7 +141,6 @@ jobs:
           path: build/libs/
 
       - name: Upload assets to GitHub Release
-        if: ${{ steps.properties.outputs.github_release == 'true' }}
         uses: AButler/upload-release-assets@v2.0
         with:
           files: 'build/libs/*'
