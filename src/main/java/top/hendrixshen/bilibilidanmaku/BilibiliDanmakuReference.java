@@ -1,12 +1,13 @@
 package top.hendrixshen.bilibilidanmaku;
 
 import net.fabricmc.loader.api.FabricLoader;
+import top.hendrixshen.bilibilidanmaku.util.VersionParser;
 
 public class BilibiliDanmakuReference {
     private static final String MOD_ID = "bilibili-danmaku";
     private static final String MOD_NAME = "Bilibili Danmaku";
     private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-    private static final String MOD_VERSION_TYPE = "Development";
+    private static final String MOD_VERSION_TYPE = VersionParser.getVersionType(MOD_VERSION);
 
     private static final int CONFIG_VERSION = 1;
 
