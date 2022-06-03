@@ -52,6 +52,9 @@ public class JsonDeserializer implements com.google.gson.JsonDeserializer<String
                     }
                     break;
                 default:
+                    if (type.contains("DANMU_MSG") && Configs.chatDanmakuEnable) {
+                        return MessageHandler.handleDanmaku(data);
+                    }
             }
         }
         return null;
