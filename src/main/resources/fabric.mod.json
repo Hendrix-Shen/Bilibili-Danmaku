@@ -1,9 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "bilibili-danmaku",
-  "name": "Bilibili Danmaku",
+  "id": "${mod_id}-${minecraft_version_id}",
   "version": "${mod_version}",
-  "description": "A Fabric mod that implements the Bilibili Danmaku for Minecraft.",
+  "icon": "assets/${mod_id}/icon.png",
+  "name": "${mod_name} for ${minecraft_version}",
+  "description": "${mod_name} for ${minecraft_version}",
   "authors": [
     {
       "name": "Hendrix_Shen",
@@ -13,14 +14,14 @@
     }
   ],
   "contact": {
-    "homepage": "https://github.com/Hendrix-Shen/Bilibili-Danmaku",
-    "issues": "https://github.com/Hendrix-Shen/Bilibili-Danmaku/issues",
-    "sources": "https://github.com/Hendrix-Shen/Bilibili-Danmaku"
+    "homepage": "${mod_homepage}",
+    "issues": "${mod_sources}/issues",
+    "sources": "${mod_sources}"
   },
-  "license": "GPLv3",
+  "license": "${mod_license}",
   "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "top.hendrixshen.bilibilidanmaku.BilibiliDanmaku"
     ],
     "modmenu": [
@@ -28,10 +29,16 @@
     ]
   },
   "mixins": [
-    "bilibili-danmaku.mixins.json"
+    "${mod_id}.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.9.0",
-    "magiclib": ">=0.3.26"
+    "minecraft": "${minecraft_dependency}",
+    "magiclib-${minecraft_version_id}": ">=${magiclib_version}"
+  },
+  "custom": {
+    "modmenu:parent": "${mod_id}",
+    "modmenu": {
+      "parent": "${mod_id}"
+    }
   }
 }

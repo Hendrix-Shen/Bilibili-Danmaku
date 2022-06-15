@@ -11,13 +11,13 @@ public final class Zlib {
         inflater.reset();
         inflater.setInput(data);
 
-        try (ByteArrayOutputStream o = new ByteArrayOutputStream(data.length)) {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(data.length)) {
             byte[] buf = new byte[1024];
             while (!inflater.finished()) {
                 int i = inflater.inflate(buf);
-                o.write(buf, 0, i);
+                byteArrayOutputStream.write(buf, 0, i);
             }
-            output = o.toByteArray();
+            output = byteArrayOutputStream.toByteArray();
         } catch (Exception e) {
             output = data;
         }

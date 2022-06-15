@@ -11,9 +11,11 @@ import org.apache.commons.io.IOUtils;
 import top.hendrixshen.bilibilidanmaku.BilibiliDanmaku;
 import top.hendrixshen.bilibilidanmaku.config.Configs;
 import top.hendrixshen.bilibilidanmaku.util.InfoUtil;
+import top.hendrixshen.bilibilidanmaku.util.StringUtil;
 import top.hendrixshen.bilibilidanmaku.util.Zlib;
 import top.hendrixshen.bilibilidanmaku.util.websocket.WebSocketClient;
 import top.hendrixshen.bilibilidanmaku.util.websocket.WebSocketManager;
+import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
 
 import java.io.IOException;
 import java.net.URL;
@@ -77,7 +79,7 @@ public class Bilibili {
     public void initMessage(WebSocketClient client) {
         int id = this.getRealRoomId(Configs.roomId);
         if (id > -1) {
-            InfoUtil.sendClientMessage(InfoUtil.getMessage("getRealRoomID.successful", id));
+            InfoUtil.displayChatMessage(StringUtil.tr("messages.getRealRoomID.successful", id));
             byte[] message = String.format("{\"roomid\": %d}", id).getBytes(StandardCharsets.UTF_8);
             ByteBuf buf = Unpooled.buffer();
             buf.writeInt(HEADER_LENGTH + message.length);
@@ -88,7 +90,7 @@ public class Bilibili {
             buf.writeBytes(message);
             client.sendMessage(buf);
         } else {
-            InfoUtil.sendClientMessage(InfoUtil.getMessage("getRealRoomID.failed"));
+            InfoUtil.displayChatMessage(StringUtil.tr(("messages.getRealRoomID.failed")));
             WebSocketManager.close();
         }
     }
@@ -144,7 +146,7 @@ public class Bilibili {
         try {
             String str = gson.fromJson(message, String.class);
             if (str != null) {
-                InfoUtil.sendClientMessage(str);
+                InfoUtil.displayChatMessage(str);
             }
         } catch (JsonSyntaxException ignore) {
         }

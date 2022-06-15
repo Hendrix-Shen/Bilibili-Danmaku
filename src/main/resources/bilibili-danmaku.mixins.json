@@ -1,16 +1,16 @@
 {
   "required": true,
-  "package": "top.hendrixshen.bilibilidanmaku.mixin",
-  "plugin": "top.hendrixshen.bilibilidanmaku.BilibiliDanmakuMixinPlugin",
   "minVersion": "0.8",
+  "package": "top.hendrixshen.bilibilidanmaku.mixin",
+  "plugin": "top.hendrixshen.bilibilidanmaku.TweakMyClientMixinPlugin",
   "compatibilityLevel": "JAVA_8",
-  "client": [
-  ],
   "mixins": [
     "event.MixinClientPacketListener",
     "event.MixinMinecraft"
   ],
+  "client": [
+  ],
   "injectors": {
-    "defaultRequire": 0
+    "defaultRequire": 1
   }
 }

@@ -1,27 +1,36 @@
 package top.hendrixshen.bilibilidanmaku.util;
 
-import fi.dy.masa.malilib.util.StringUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import top.hendrixshen.bilibilidanmaku.BilibiliDanmaku;
-import top.hendrixshen.bilibilidanmaku.BilibiliDanmakuReference;
+import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
 
 public class InfoUtil {
-    private static final Minecraft minecraft = BilibiliDanmaku.getMinecraftClient();
+    private final static Minecraft mc = BilibiliDanmaku.getMinecraftClient();
 
-    public static void sendClientMessage(String string) {
-        sendClientMessage(new TextComponent(string));
-    }
-
-    public static void sendClientMessage(TextComponent component) {
-        LocalPlayer player = minecraft.player;
-        if (player != null) {
-            player.displayClientMessage(component, false);
+    public static void displayClientMessage(Component component, boolean useActionBar) {
+        if (mc.player != null) {
+            mc.player.displayClientMessage(component, useActionBar);
         }
     }
 
-    public static String getMessage(String node, Object... objects) {
-        return StringUtils.translate(String.format("%s.messages.%s", BilibiliDanmakuReference.getModId(), node), objects);
+    public static void displayClientMessage(String string, boolean useActionBar) {
+        InfoUtil.displayClientMessage(ComponentCompatApi.literal(string), useActionBar);
+    }
+
+    public static void displayActionBarMessage(Component component) {
+        InfoUtil.displayClientMessage(component, true);
+    }
+
+    public static void displayActionBarMessage(String string) {
+        InfoUtil.displayClientMessage(string, true);
+    }
+
+    public static void displayChatMessage(Component component) {
+        InfoUtil.displayClientMessage(component, false);
+    }
+
+    public static void displayChatMessage(String string) {
+        InfoUtil.displayClientMessage(string, false);
     }
 }
