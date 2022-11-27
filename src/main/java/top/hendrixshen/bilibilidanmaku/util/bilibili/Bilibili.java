@@ -142,7 +142,6 @@ public class Bilibili {
     }
 
     private void handleStringMessage(String message) {
-        BilibiliDanmaku.getLogger().debug(message);
         try {
             String str = gson.fromJson(message, String.class);
             if (str != null) {
