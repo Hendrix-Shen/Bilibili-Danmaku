@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "top.hendrixshen.bilibilidanmaku.mixin",
-  "plugin": "top.hendrixshen.bilibilidanmaku.TweakMyClientMixinPlugin",
+  "plugin": "top.hendrixshen.bilibilidanmaku.BilibiliDanmakuMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "event.MixinClientPacketListener",
