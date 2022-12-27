@@ -4,16 +4,11 @@ import net.fabricmc.loader.api.FabricLoader;
 import top.hendrixshen.bilibilidanmaku.config.ConfigHandler;
 import top.hendrixshen.bilibilidanmaku.util.VersionParser;
 import top.hendrixshen.magiclib.config.ConfigManager;
-import top.hendrixshen.magiclib.util.FabricUtil;
 
 public class BilibiliDanmakuReference {
     private static final String MOD_ID = "bilibili-danmaku";
-    private static final String MOD_NAME = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getName();
-    private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-    private static final String MOD_VERSION_TYPE = VersionParser.getVersionType(MOD_VERSION);
-
     //#if MC > 11802
-    private static final String CURRENT_MOD_ID = String.format("%s-1_19", MOD_ID);
+    private static final String CURRENT_MOD_ID = String.format("%s-1_19_2", MOD_ID);
     //#elseif MC > 11701
     //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_18_2", MOD_ID);
     //#elseif MC > 11605
@@ -25,6 +20,9 @@ public class BilibiliDanmakuReference {
     //#else
     //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_14_4", MOD_ID);
     //#endif
+    private static final String MOD_NAME = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getName();
+    private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+    private static final String MOD_VERSION_TYPE = VersionParser.getVersionType(MOD_VERSION);
 
     private static final int CONFIG_VERSION = 1;
     private static final ConfigManager CONFIG_MANAGER = ConfigManager.get(MOD_ID);
